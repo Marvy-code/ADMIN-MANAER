@@ -31271,11 +31271,11 @@ body.text-sm .input-group-text {
 }
 
 .dark-mode .progress {
-  background: #454d55;
+  background: #E84A20;
 }
 
 .card-primary:not(.card-outline) > .card-header {
-  background-color: #007bff;
+  background-color: #E84A20;
 }
 
 .card-primary:not(.card-outline) > .card-header,
@@ -31284,19 +31284,19 @@ body.text-sm .input-group-text {
 }
 
 .card-primary:not(.card-outline) > .card-header a.active {
-  color: #1f2d3d;
+  color: #E84A20;
 }
 
 .card-primary.card-outline {
-  border-top: 3px solid #007bff;
+  border-top: 3px solid #E84A20;
 }
 
 .card-primary.card-outline-tabs > .card-header a:hover {
-  border-top: 3px solid #dee2e6;
+  border-top: 3px solid #E84A20;
 }
 
 .card-primary.card-outline-tabs > .card-header a.active {
-  border-top: 3px solid #007bff;
+  border-top: 3px solid #E84A20;
 }
 
 .bg-primary > .card-header .btn-tool,
@@ -31328,7 +31328,7 @@ body.text-sm .input-group-text {
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.hour:hover,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.minute:hover,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.second:hover {
-  background-color: #0067d6;
+  background-color: #E84A20;
   color: #fff;
 }
 
@@ -31341,12 +31341,12 @@ body.text-sm .input-group-text {
 .card.bg-primary .bootstrap-datetimepicker-widget table td.active:hover,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.active,
 .card.bg-gradient-primary .bootstrap-datetimepicker-widget table td.active:hover {
-  background-color: #3395ff;
+  background-color: #E84A20;
   color: #fff;
 }
 
 .card-secondary:not(.card-outline) > .card-header {
-  background-color: #6c757d;
+  background-color: #E84A20;
 }
 
 .card-secondary:not(.card-outline) > .card-header,
@@ -31355,15 +31355,15 @@ body.text-sm .input-group-text {
 }
 
 .card-secondary:not(.card-outline) > .card-header a.active {
-  color: #1f2d3d;
+  color: #E84A20;
 }
 
 .card-secondary.card-outline {
-  border-top: 3px solid #6c757d;
+  border-top: 3px solid #E84A20;
 }
 
 .card-secondary.card-outline-tabs > .card-header a:hover {
-  border-top: 3px solid #dee2e6;
+  border-top: 3px solid #E84A20;
 }
 
 .card-secondary.card-outline-tabs > .card-header a.active {
@@ -56484,5 +56484,10 @@ a.text-muted:hover {
 
 .dark-mode .dark-mode.accent-gray-dark .page-item .page-link:hover, .dark-mode .dark-mode.accent-gray-dark .page-item .page-link:focus {
   color: #3f474e;
+}
+
+
+.bg-primary{
+    background-color: #005C94;
 }
 
