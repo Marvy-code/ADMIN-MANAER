@@ -22,15 +22,15 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
             <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="fas fa-house-user nav-icon"></i>
-                <p>Accueil</p>
-            </a>
+              <a href="{{ route('home') }}" class="nav-link {{ setMenuActive('home') }}">
+                  <i class="fas fa-house-user nav-icon"></i>
+                  <p>Accueil</p>
+              </a>
             </li>
 
             @can('admin', 'superadmin')
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -54,8 +54,8 @@
           </li>
           
 
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
                 <i class="fab fa-hive nav-icon"></i>
               <p>
                 Gestion des articles
@@ -64,7 +64,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link">
                     <i class="fas fa-th-large nav-icon"></i>
                   <p>Nouvel article</p>
                 </a>
@@ -78,8 +78,8 @@
             </ul>
           </li>
 
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item {{ setMenuClass('admin.habilitations.', 'menu-open') }}">
+            <a href="#" class="nav-link {{ setMenuClass('admin.habilitations.', 'active') }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Habilitations
@@ -88,14 +88,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.habilitations.admin.personnel') }}" class="nav-link active">
+                <a href="{{ route('admin.habilitations.admin.personnel') }}" class="nav-link {{ setMenuActive('admin.habilitations.admin.personnel') }}">
                     <i class="fas fa-th-large nav-icon"></i>
                   <p>Liste du personnel</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                    <i class="fas fa-shapes nav-icon"></i>
+                    <i class="fas fa-fingerprint nav-icon"></i>
                   <p>Rôles et permissions</p>
                 </a>
               </li>
@@ -127,8 +127,8 @@
             </a>
           </li>
 
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
                 <i class="fas fa-folder-open nav-icon"></i>
               <p>
                 Gestion documents
@@ -137,7 +137,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a href="#" class="nav-link ">
                     <i class="fas fa-folder-minus nav-icon"></i>
                   <p>Docs administratifs</p>
                 </a>
@@ -161,5 +161,5 @@
         </ul>
       </nav>
     </div>
-  </aside>
+</aside>
 

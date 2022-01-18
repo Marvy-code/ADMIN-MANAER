@@ -1,9 +1,17 @@
 <?php
 use Illuminate\Support\Str;
+
+function setMenuClass($route, $class){
+    $routeActuel = request()->route()->getName();
+    if(contains($routeActuel, $route)){
+        return $class;
+    }
+    return "";
+}
+
 function setMenuActive($route){
     $routeActuel = request()->route()->getName();
-// dd($routeActuel);
-    if(contains($routeActuel, $route)){
+    if($routeActuel === $route){
         return "active";
     }
     return "";
