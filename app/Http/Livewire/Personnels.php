@@ -12,8 +12,10 @@ class Personnels extends Component
     use WithPagination;
     protected $paginationTheme = "Bootstrap";
 
-    public $isBtnAddClicked = false; //Si le bouton Ajouter nouvel agent est cliqué, afficher le formulaire d'ajout. Par défaut, la liste s'affiche
+    public $currentPage = PAGELISTE;
+    
     public $newAgent = [];
+    public $editAgent = [];
 
     // Rules / critères de validation  des champs
     protected $rules = [
@@ -47,14 +49,18 @@ class Personnels extends Component
 
     // Changement d'état du boutton pour afficher le formulaire d'ajout
     public function goToAddAgent(){
-        $this->isBtnAddClicked = true;
+        $this->currentPage = PAGECREATEFORM;
     }
 
+    // Afficher le formulaire de mise à jour des infos d'un agent
+    public function goToEditAgent(){
+        $this->currentPage = PAGEEDITFORM;
+    }
+    
     // Fermer le formulaire pour afficher la liste des agents
     public function goToListAgent(){
-        $this->isBtnAddClicked = false;
+        $this->currentPage = PAGELISTE;
     }
-
     // Traitement du formulaire d'ajout d'un agent
     public function addAgent(){
         $matricule = "DNI-".strtoupper(substr(md5(uniqid('newAgent.nom', true)), 0,4));
@@ -69,7 +75,7 @@ class Personnels extends Component
 
         //Affiche le message de succès sweet alert qui s'affiche sur le coin supérieur droit de l'écran
         $this->dispatchBrowserEvent("showSuccessMessage", ["message" => "Agent crée avec succès !"]);
-        $this->isBtnAddClicked = false;
+        $this->currentPage = PAGELISTE;
     }
 
     // Confirmation de la suppression (Pop-up sweet alert)

@@ -1,6 +1,10 @@
 <?php
 use Illuminate\Support\Str;
 
+define("PAGELISTE", "liste");
+define("PAGECREATEFORM", "create");
+define("PAGEEDITFORM", "edit");
+
 function setMenuClass($route, $class){
     $routeActuel = request()->route()->getName();
     if(contains($routeActuel, $route)){
