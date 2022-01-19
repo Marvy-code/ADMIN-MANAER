@@ -38,7 +38,7 @@
                             <div class="col-12">
                                 <div class="card card-primary card-outline">
                                     <div class="card-header">
-                                        <h3 class="card-title">Total du personnel : </h3>
+                                        <h3 class="card-title">Total du personnel : <strong>{{ $totalAgent }}</strong></h3>
 
                                         <div class="card-tools d-flex align-items-center">
                                             <a wire:click.prevent='goToAddAgent()'
@@ -89,7 +89,7 @@
                                                             <button class='btn btn-primary'>
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
-                                                            <button class='btn btn-danger'>
+                                                            <button class='btn btn-danger' wire:click="confirmDelete('{{ $agent->prenom }} {{ $agent->nom }}', {{ $agent->id }})">
                                                                 <i class="fas fa-trash-restore-alt"></i>
                                                             </button>
                                                         </td>
@@ -113,3 +113,33 @@
         </div>
     </div>
 </div>
+
+<script>
+    window.addEventListener("showConfirmMessage", event=>{
+        Swal.fire({
+            title: event.detail.message.title,
+            text: event.detail.message.text,
+            icon: event.detail.message.type,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Continuer !',
+            cancelButtonText: 'Annuler !',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                @this.deleteAgent(event.detail.message.data.agent_id)
+            }
+        })
+    });
+
+    window.addEventListener("showSuccessMessage", event=>{
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast: true,
+            title: event.detail.message || "Opération effectuée avec succès !",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    })
+</script>

@@ -16,7 +16,6 @@ class Personnels extends Component
     public $newAgent = [];
 
     // Rules / critères de validation  des champs
-
     protected $rules = [
         'newAgent.nom'          => 'required',
         'newAgent.prenom'       => 'required',
@@ -39,7 +38,8 @@ class Personnels extends Component
     public function render()
     {
         return view('livewire.personnels.index', [
-            "agents" => User::latest()->paginate(5)
+            "agents" => User::latest()->paginate(5),
+            "totalAgent"    => User::count()
         ])
         ->extends('layouts.master')
         ->section('content');
@@ -56,7 +56,6 @@ class Personnels extends Component
     }
 
     // Traitement du formulaire d'ajout d'un agent
-
     public function addAgent(){
         $matricule = "DNI-".strtoupper(substr(md5(uniqid('newAgent.nom', true)), 0,4));
         // dd($matricule);
@@ -68,7 +67,27 @@ class Personnels extends Component
 
         $this->newAgent = [];
 
+        //Affiche le message de succès sweet alert qui s'affiche sur le coin supérieur droit de l'écran
         $this->dispatchBrowserEvent("showSuccessMessage", ["message" => "Agent crée avec succès !"]);
         $this->isBtnAddClicked = false;
     }
+
+    // Confirmation de la suppression (Pop-up sweet alert)
+    public function confirmDelete($name, $id){
+        $this->dispatchBrowserEvent("showConfirmMessage", ["message" => [
+            "text"      => "Vous êtes sur le point de supprimer $name de la liste du personnel ! Voulez-vous continuer ?",
+            "title"     => "Etes-vous sûr de continuer cette action ?",
+            "type"      => "warning",
+            "data"      => [
+                "agent_id"   => $id
+            ]
+        ]]);
+    }
+
+    // Fonction qui supprime un agent de la base de donnée
+    public function deleteAgent($id){
+        User::destroy($id);
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message" => "Agent supprimé avec succès !"]);
+    }
 }
+ 
