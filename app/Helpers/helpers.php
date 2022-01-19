@@ -1,9 +1,12 @@
 <?php
+
 use Illuminate\Support\Str;
 
 define("PAGELISTE", "liste");
 define("PAGECREATEFORM", "create");
 define("PAGEEDITFORM", "edit");
+
+define('DEFAULTPASSWORD', "password");
 
 function setMenuClass($route, $class){
     $routeActuel = request()->route()->getName();

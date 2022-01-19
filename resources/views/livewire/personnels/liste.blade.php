@@ -86,7 +86,7 @@
                                                         </td>
                                                         <td>{{ strtolower($agent->email) }}</td>
                                                         <td class='btn-group'>
-                                                            <button class='btn btn-primary' wire:click='goToEditAgent()'>
+                                                            <button class='btn btn-primary' wire:click='goToEditAgent({{ $agent->id }})'>
                                                                 <i class="fas fa-edit"></i>
                                                             </button>
                                                             <button class='btn btn-danger' wire:click="confirmDelete('{{ $agent->prenom }} {{ $agent->nom }}', {{ $agent->id }})">

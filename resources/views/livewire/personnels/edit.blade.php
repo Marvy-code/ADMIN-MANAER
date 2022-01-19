@@ -1,7 +1,7 @@
 <div class="p-4 pt-5 content">
     <div class="container-fluid">
         <div class='row'>
-            <div class='col-sm-8'>
+            <div class='col-sm-6'>
                 <div class="card card-primary">
                     <div class="card-header">
                         <h3 class="card-title"><i class="fas fa-user-shield"></i> 
@@ -10,7 +10,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form wire:submit.prevent="addAgent()">
+                    <form wire:submit.prevent="updateAgent()">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="nomAgent">Nom de l'agent</label>
@@ -51,10 +51,47 @@
                         </div>
 
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-spinner"></i> Enregistrer</button>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-spinner"></i> Enregistrer les modifications</button>
                             <button type="submit" wire:click.prevent='goToListAgent()' class="btn btn-secondary"><i class="fas fa-backward"></i> Retourner sur la liste</button>
                         </div>
                     </form>
+                </div>
+            </div>
+
+            <div class='col-sm-6'>
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="fas fa-lock"></i> 
+                                    Affectation d'un mot de passe
+                                </h3>
+                            </div>
+                           
+                            <div class="card-body">
+                                <ul>
+                                    <li>
+                                        <a href='#' wire:click.prevent='confirmPaswordReset()' class='btn btn-primary'><i class='fas fa-key'></i> Affecter un mot de passe</a>
+                                    </li>
+                                </ul>
+                            </div> 
+                        </div> 
+                    </div>
+
+                    <div class='mt-4 col-md-12'>
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="fas fa-fingerprint"></i> 
+                                    Rôles et permissions
+                                </h3>
+                            </div>
+                           
+                            <div class="card-body">
+                            
+                                
+                            </div> 
+                        </div>  
+                    </div>
                 </div>
             </div>
         </div>

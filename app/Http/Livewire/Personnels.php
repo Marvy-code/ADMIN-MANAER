@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -17,25 +19,6 @@ class Personnels extends Component
     public $newAgent = [];
     public $editAgent = [];
 
-    // Rules / critères de validation  des champs
-    protected $rules = [
-        'newAgent.nom'          => 'required',
-        'newAgent.prenom'       => 'required',
-        'newAgent.tel'          => 'required|numeric',
-        'newAgent.email'        => 'required|email|unique:users,email',
-    ];
-
-    // Personnalisation des msg callback du formulaire
-
-    // protected $message = [
-    //     'newAgent.nom.required'         => 'Le nom de l\'agent est requis',
-    //     'newAgent.prenom.required'         => 'Le prenom de l\'agent est requis',
-    // ];
-
-    // protected $validationAttributes = [
-    //     'newAgent.nom'          => 'nom'
-    // ];
-
     // Fonction qui retourne la liste des agents
     public function render()
     {
@@ -47,20 +30,29 @@ class Personnels extends Component
         ->section('content');
     }
 
+    // required|email|unique:users,email
+    public function rules(){
+        if($this->currentPage == PAGEEDITFORM){
+            return [
+                'editAgent.nom'          => 'required',
+                'editAgent.prenom'       => 'required',
+                'editAgent.tel'          => 'required|numeric',
+                'editAgent.email'        => ['required', 'email', Rule::unique('users', 'email')->ignore($this->editAgent['id'])],
+            ];
+        }
+        return [
+            'newAgent.nom'          => 'required',
+            'newAgent.prenom'       => 'required',
+            'newAgent.tel'          => 'required|numeric',
+            'newAgent.email'        => 'required|email|unique:users,email',
+        ];
+    }
+
     // Changement d'état du boutton pour afficher le formulaire d'ajout
     public function goToAddAgent(){
         $this->currentPage = PAGECREATEFORM;
     }
 
-    // Afficher le formulaire de mise à jour des infos d'un agent
-    public function goToEditAgent(){
-        $this->currentPage = PAGEEDITFORM;
-    }
-    
-    // Fermer le formulaire pour afficher la liste des agents
-    public function goToListAgent(){
-        $this->currentPage = PAGELISTE;
-    }
     // Traitement du formulaire d'ajout d'un agent
     public function addAgent(){
         $matricule = "DNI-".strtoupper(substr(md5(uniqid('newAgent.nom', true)), 0,4));
@@ -77,6 +69,37 @@ class Personnels extends Component
         $this->dispatchBrowserEvent("showSuccessMessage", ["message" => "Agent crée avec succès !"]);
         $this->currentPage = PAGELISTE;
     }
+
+    // Afficher le formulaire de mise à jour des infos d'un agent
+    public function goToEditAgent($id){
+        $this->editAgent = User::find($id)->toArray();
+        $this->currentPage = PAGEEDITFORM;
+    }
+
+    // Traitement du formulaire d'édition 
+    public function updateAgent(){
+        $validationAttributes = $this->validate();
+        User::find($this->editAgent["id"])->update($validationAttributes['editAgent']);
+
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message" => "Informations de l'agent modifiées avec succès !"]);
+        $this->currentPage = PAGELISTE;
+    }
+
+    // Réinitialisation du mot de passe
+    public function confirmPaswordReset(){
+        // On affectera plutôt un réel mot de passe plus tard
+        User::find($this->editAgent['id'])->update(["password"=>Hash::make(DEFAULTPASSWORD)]);
+
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message" => "Mot de passe de l'agent attribué avec succès !"]);
+        $this->currentPage = PAGELISTE;
+    }
+    
+    // Fermer le formulaire pour afficher la liste des agents
+    public function goToListAgent(){
+        $this->currentPage = PAGELISTE;
+        $this->editAgent = [];
+    }
+    
 
     // Confirmation de la suppression (Pop-up sweet alert)
     public function confirmDelete($name, $id){
