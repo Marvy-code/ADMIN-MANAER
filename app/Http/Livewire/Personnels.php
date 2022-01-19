@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -18,6 +20,8 @@ class Personnels extends Component
     
     public $newAgent = [];
     public $editAgent = [];
+
+    public $rolePermissions = [];
 
     // Fonction qui retourne la liste des agents
     public function render()
@@ -74,6 +78,61 @@ class Personnels extends Component
     public function goToEditAgent($id){
         $this->editAgent = User::find($id)->toArray();
         $this->currentPage = PAGEEDITFORM;
+
+        $this->populateRolePermissions();
+    }
+
+    public function populateRolePermissions(){
+        $this->rolePermissions["roles"] = [];
+        $this->rolePermissions["permissions"] = [];
+
+        $mapForCB = function($value){
+            return $value["id"];
+        };
+
+        $roleIds = array_map($mapForCB, User::find($this->editAgent['id'])->roles->toArray());
+        $permissionsIds = array_map($mapForCB, User::find($this->editAgent['id'])->permissions->toArray());
+        
+        foreach(Role::all() as $role){
+            if(in_array($role->id, $roleIds)){
+                array_push($this->rolePermissions["roles"], ["role_id"=>$role->id, "role_nom"=>$role->libelle, "active"=>true]);
+            }
+            else{
+                array_push($this->rolePermissions["roles"], ["role_id"=>$role->id, "role_nom"=>$role->libelle, "active"=>false]);
+            }
+        }
+
+        foreach(Permission::all() as $permissions){
+            if(in_array($permissions->id, $permissionsIds)){
+                array_push($this->rolePermissions["permissions"], ["permission_id"=>$permissions->id, "permission_nom"=>$permissions->libelle, "active"=>true]);
+            }
+            else{
+                array_push($this->rolePermissions["permissions"], ["permission_id"=>$permissions->id, "permission_nom"=>$permissions->libelle, "active"=>false]);
+            }
+        }
+        
+    }
+
+
+    // Mise à jour des rôles et permissions
+
+    public function updateRoleAndPermissions(){
+        DB::table('user_role')->where('user_id', $this->editAgent["id"])->delete();
+        DB::table('user_permission')->where('user_id', $this->editAgent["id"])->delete();
+
+        foreach($this->rolePermissions["roles"] as $role){
+            if($role["active"]){
+                User::find($this->editAgent['id'])->roles()->attach($role['role_id']);
+            }
+        }
+
+        foreach($this->rolePermissions["permissions"] as $permission){
+            if($permission["active"]){
+                User::find($this->editAgent['id'])->permissions()->attach($permission['permission_id']);
+            }
+        }
+
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message" => "Rôles/Permissions mis à jour avec succès !"]);
     }
 
     // Traitement du formulaire d'édition 
@@ -98,6 +157,7 @@ class Personnels extends Component
     public function goToListAgent(){
         $this->currentPage = PAGELISTE;
         $this->editAgent = [];
+        $this->newAgent = [];
     }
     
 

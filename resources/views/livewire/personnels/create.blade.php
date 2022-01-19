@@ -13,7 +13,7 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="nomAgent">Nom de l'agent</label>
-                                <input type="text" class="form-control @error('newAgent.nom') is-invalid @enderror" id="nomAgent" wire:model='newAgent.nom'
+                                <input type="text" class="form-control @error('newAgent.nom') is-invalid @enderror" id="nomAgent" wire:model.lazy='newAgent.nom'
                                     placeholder="Entrez le nom de l'agent">
                                     @error('newAgent.nom')
                                     <span class='text-danger'>{{ $message }}</span>
@@ -22,7 +22,7 @@
 
                             <div class="form-group">
                                 <label for="prenomAgent">Prénom de l'agent</label>
-                                <input type="text" class="form-control @error('newAgent.prenom') is-invalid @enderror" id="prenomAgent" wire:model='newAgent.prenom'
+                                <input type="text" class="form-control @error('newAgent.prenom') is-invalid @enderror" id="prenomAgent" wire:model.lazy='newAgent.prenom'
                                     placeholder="Entrez le prénom de l'agent">
                                     @error('newAgent.prenom')
                                     <span class='text-danger'>{{ $message }}</span>
@@ -31,7 +31,7 @@
 
                             <div class="form-group">
                                 <label for="telAgent">Télphone</label>
-                                <input type="number" class="form-control @error('newAgent.tel') is-invalid @enderror" id="telAgent" wire:model='newAgent.tel'
+                                <input type="number" class="form-control @error('newAgent.tel') is-invalid @enderror" id="telAgent" wire:model.lazy='newAgent.tel'
                                     placeholder="Numéro de téléphone de l'agent">
                                     @error('newAgent.tel')
                                     <span class='text-danger'>{{ $message }}</span>
@@ -40,7 +40,7 @@
                             
                             <div class="form-group">
                                 <label for="emailAgent">Adresse mail</label>
-                                <input type="email" class="form-control @error('newAgent.email') is-invalid @enderror" id="emailAgent" wire:model='newAgent.email'
+                                <input type="email" class="form-control @error('newAgent.email') is-invalid @enderror" id="emailAgent" wire:model.lazy='newAgent.email'
                                     placeholder="Numéro de téléphone de l'agent">
                                 @error('newAgent.email')
                                     <span class='text-danger'>{{ $message }}</span>
