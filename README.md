@@ -4,7 +4,7 @@ DRUMNET INNOV est une entreprise congolaise qui œuvre dans le secteur du numér
 
 ## Développeur 
 
-Marvy MOUANDA NGOMA, Développeur Fullstack à l'ARPCE DG/SI
+Marvy MOUANDA NGOMA, Développeur Fullstack à l'ARPCE DG/SI, CEO & Co-fondateur de DRUMNET INNOV
 
 ## Technologies
 
