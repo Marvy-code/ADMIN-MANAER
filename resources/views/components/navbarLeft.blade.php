@@ -75,6 +75,13 @@
                   <p>Blog</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-shapes nav-icon"></i>
+                  <p>Catégorie d'article</p>
+                </a>
+              </li>
             </ul>
           </li>
 
