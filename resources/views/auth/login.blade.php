@@ -5,7 +5,7 @@
 <div class="login-box login-card-body" style='width:700px;border-radius:5px'>
     <div class="login-logo">
         <a href="#"><b>
-            <img src='{{ asset('img/logotype.png') }}' width='200'>
+            <img src='{{ asset('img/ux.png') }}' width='200'>
         </a>
     </div>
     <!-- /.login-logo -->

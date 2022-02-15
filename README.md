@@ -1,14 +1,27 @@
-## A propos de DRUMNET INNOV
+## A propos de ADMIN MANAGER
 
-DRUMNET INNOV est une entreprise congolaise qui œuvre dans le secteur du numérique et de la gestion d’entreprise. Grâce à notre gamme de services adaptée, nous accompagnons nos clients dans leur transformation digitale et dans la gestion efficiente de leurs activités. Notre équipe, jeune, passionnée et professionnelle saura vous guider vers la réussite de tous vos projets. Du porteur de projet, en passant par les start-ups et les PME jusqu’aux grands groupes, nous mettons un point d’honneur à satisfaire tous nos clients en leur apportant notre expertise et notre dynamisme.
+ADMIN MANAGER est un mini template dont la logique applicative a été conçue par Marvy MOUANDA NGOMA.
+Les fonctionnalités implémentées dans ce projet open source sont entre autres:
 
-## Développeur 
-
-Marvy MOUANDA NGOMA, Développeur Fullstack à l'ARPCE DG/SI, CEO & Co-fondateur de DRUMNET INNOV
+#### La connexionn,
+#### La déconnexion,
+#### L'ajout des utilisateurs avec rôles et permissions (Habilitations)
 
 ## Technologies
 
 php/Laravel 8; Livewire;
+
+## Procédure d'installation
+Je suppose que vous avez Laravel 8 et Livewire installés sur votre machine.
+Clonez le projet dans votre machine locale. Générez le fichier .env et créez la base de donnée adminmanager dans votre MySQL (Tout autre driver peut être utiliser, à condition de configurer dans le fichier .env).
+
+Après la création de la base de données, exécutez php artisan serve et ouvrez le navigateur. Normalement vous devriez avoir la page de login affichée; puis exécutez php artisan migrate --seed pour populer votre base de données avec des tables et des données fictives.
+
+Trouvez un username dans votre table users et connectez-vous avec le mot de passe par défaut qu'est password.
+
+Vous avez la main du projet et vous pouvez continuer le développement avec l'implémentation d'autres fonctionnalités.
+
+Toutefois, vérifiez bien les rôles des utilisateurs dans la base de données si vous avez du mal à vous connecter.
 
 ## Base de données
 
@@ -17,3 +30,10 @@ MySQL
 ## License
 
 Ce projet tourne sur la licence [MIT license](https://opensource.org/licenses/MIT).
+
+## Développeur 
+
+Marvy MOUANDA NGOMA, Développeur Fullstack
+Whatsapp: +242068289050
+Email: gwlad.marvy@gmail.com
+Brazzaville, Congo

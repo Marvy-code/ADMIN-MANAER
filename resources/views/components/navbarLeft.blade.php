@@ -9,7 +9,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="pb-3 mt-3 mb-3 user-panel d-flex">
         <div class="image">
-          <img src="{{ asset('img/logojpg.jpg') }}" class="elevation-2" alt="" style='border-radius: 3px'>
+          <img src="{{ asset('img/ux.png') }}" class="elevation-2" alt="" style='border-radius: 3px'>
         </div>
         <div class="info">
           <a href="#" class="d-block text-uppercase">{{ Auth::user()->nom }}</a>
@@ -29,7 +29,7 @@
             </li>
 
             @can('admin', 'superadmin')
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -51,11 +51,11 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> --}}
           
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
+          {{-- <li class="nav-item {{ setMenuClass('admin.gestarticles.', 'menu-open') }}">
+            <a href="#" class="nav-link {{ setMenuClass('admin.gestarticles.', 'active') }}">
                 <i class="fab fa-hive nav-icon"></i>
               <p>
                 Gestion des articles
@@ -77,13 +77,13 @@
               </li>
 
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.gestarticles.categoriearticle') }}" class="nav-link {{ setMenuActive('admin.gestarticles.categoriearticle') }}">
                     <i class="fas fa-shapes nav-icon"></i>
                   <p>Catégorie d'article</p>
                 </a>
               </li>
             </ul>
-          </li>
+          </li> --}}
 
           <li class="nav-item {{ setMenuClass('admin.habilitations.', 'menu-open') }}">
             <a href="#" class="nav-link {{ setMenuClass('admin.habilitations.', 'active') }}">
@@ -113,7 +113,7 @@
 
           @can("employe")
        
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="fas fa-user-friends nav-icon"></i>
               <p>Gestion des clients</p>
@@ -161,7 +161,7 @@
                     <i class="fas fa-images nav-icon"></i>
                   <p>Galerie photo</p>
                 </a>
-              </li>
+              </li> --}}
             </ul>
           </li>
           @endcan
